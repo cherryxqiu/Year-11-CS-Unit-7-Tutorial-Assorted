@@ -19,7 +19,7 @@ public class Assorted {
     public static int findSum(List<?> list) {
         int sum = 0;
 
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             int a = Integer.parseInt((String) list.get(i));
             sum += a;
         }
@@ -36,7 +36,7 @@ public class Assorted {
      */
     public static List<Integer> filterStrings(List list) {
         ArrayList<Integer> integers = new ArrayList();
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             if(Integer.class.isInstance(list.get(i))){
                 integers.add((Integer) list.get(i));
             }
@@ -55,7 +55,7 @@ public class Assorted {
      */
     public static List<String> lineNumbering(List<String> list) {
         ArrayList<String> withLineNum = new ArrayList();
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             withLineNum.add( i + ": " + list.get(i));
         }
         return withLineNum;
@@ -81,7 +81,7 @@ public class Assorted {
      */
     public static int busStop(List<Integer[]> list) {
         int left = 0;
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             Integer[] currStop = list.get(i);
             left += currStop[0]-currStop[1];
         }
@@ -99,7 +99,7 @@ public class Assorted {
     public static int toBinary(List<Integer> list) {
         int num = 0;
         int temp = 0;
-        for (int i = list.size - 1; i >= 0; i--){
+        for (int i = list.size() - 1; i >= 0; i--){
             num += ((int) Math.pow(2, temp)) * list.get(i);
             temp++;
         }
@@ -158,14 +158,14 @@ public class Assorted {
     public static List<Integer> sortOdd(List<Integer> list) {
         ArrayList<Integer> oddNums = new ArrayList();
         ArrayList<Integer> index = new ArrayList();
-        for(int i = 0; i < list.size;i++) {
+        for(int i = 0; i < list.size();i++) {
             if (!(list.get(i) % 2 == 0)) {
                 oddNums.add(list.get(i));
                 index.add(list.indexOf(list.get(i)));
             }
         }
         Collections.sort(oddNums);
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             list.set(index.get(i),oddNums.get(i));
         }
         return list;
@@ -202,15 +202,6 @@ public class Assorted {
                 digits.add(number % 10);
                 number /= 10;
             }
-            int sum = 0;
-            int temp = 1;
-            for (int j = digits.size(); j > 0; j--) {
-                sum += (int) Math.pow(digits.get(j - 1), (temp));
-                temp++;
-            }
-            if (sum = i) {
-                uniqueNumbers.add(i);
-            }
         }
         return uniqueNumbers;
     }
@@ -236,7 +227,7 @@ public class Assorted {
      */
     public static List<Integer> filterNTimes(List<Integer> list, int n) {
         int frequency;
-        for(int i = 0; i < list.size; i++){
+        for(int i = 0; i < list.size(); i++){
             frequency = Collections.frequency(list, list.get(i));
             if(frequency>n){
                 list.remove(list.get(i));
@@ -316,12 +307,3 @@ public class Assorted {
      *              queueTime([10,2,3,3], 2) returns 10
      *              queueTime([2,3,10], 2) returns 12
      */
-    public static int queueTime(List<Integer> queue, int tillsOpen) {
-        int[] tills = new int[tillsOpen];
-        for (int i : queue){
-            tills[0] += i;
-            Arrays.sort(tills);
-        }
-        return(tills[tillsOpen - 1]);
-    }
-}
